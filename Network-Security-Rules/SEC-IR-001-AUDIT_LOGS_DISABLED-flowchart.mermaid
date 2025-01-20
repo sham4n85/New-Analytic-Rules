@@ -1,0 +1,18 @@
+flowchart TD
+    A[Alert: Audit Logs Disabled] --> B{Verify Alert}
+    B -->|True Positive| C[Initial Assessment]
+    B -->|False Positive| D[Document & Close]
+    C --> E[Immediate Actions]
+    E --> F{System Isolated?}
+    F -->|Yes| G[Investigation]
+    F -->|No| H[Isolate if needed]
+    H --> G
+    G --> I{Compromise Found?}
+    I -->|Yes| J[Escalate to IR Team]
+    I -->|No| K[Recovery Actions]
+    J --> L[Full IR Process]
+    K --> M[Re-enable Logging]
+    M --> N[Verify Logging]
+    N --> O[Update Documentation]
+    O --> P[Post-Incident Review]
+    L --> P
