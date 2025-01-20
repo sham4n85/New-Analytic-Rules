@@ -1,0 +1,26 @@
+flowchart TD
+    A[Alert: Abnormal Protocol Detection] --> B{Initial Triage}
+    B -->|High Priority| C[Alert SOC Manager]
+    B -->|Medium Priority| D[Regular Investigation]
+    
+    C --> E[Immediate Investigation]
+    D --> E
+    
+    E --> F{Validate Alert}
+    F -->|False Positive| G[Document & Tune Detection]
+    F -->|Confirmed| H[Containment Phase]
+    
+    H --> I[Block Suspicious Traffic]
+    I --> J[Identify Affected Systems]
+    J --> K[Collect Evidence]
+    
+    K --> L{Malicious Activity?}
+    L -->|Yes| M[Escalate to IR Team]
+    L -->|No| N[Document Finding]
+    
+    M --> O[Execute IR Playbook]
+    O --> P[System Recovery]
+    P --> Q[Post-Incident Review]
+    
+    N --> Q
+    G --> Q

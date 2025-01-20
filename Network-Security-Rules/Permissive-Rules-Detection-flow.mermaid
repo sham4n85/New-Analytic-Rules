@@ -1,0 +1,30 @@
+flowchart TD
+    A[Alert: Permissive Rule Detected] --> B{Validate Alert}
+    B -->|False Positive| C[Document & Close]
+    B -->|Confirmed| D[Initial Assessment]
+    D --> E{Risk Level}
+    E -->|High| F[Immediate Rule Rollback]
+    E -->|Medium| G[Further Investigation]
+    E -->|Low| H[Monitor & Document]
+    
+    F --> I[Notify Security Team]
+    G --> J[Review Change History]
+    H --> K[Add to Security Review]
+    
+    J --> L{Authorized Change?}
+    L -->|No| M[Initiate IR Protocol]
+    L -->|Yes| N[Update Documentation]
+    
+    M --> O[Block Suspicious IPs]
+    M --> P[Review Access Logs]
+    M --> Q[Forensic Analysis]
+    
+    O & P & Q --> R[IR Team Review]
+    R --> S[Create JIRA Ticket]
+    R --> T[Update SIEM Rules]
+    R --> U[Team Debrief]
+    
+    N --> V[Risk Assessment]
+    V --> W[Update Baseline]
+    
+    S & T & U & W --> X[Final Report]
